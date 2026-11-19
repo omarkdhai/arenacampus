@@ -1,0 +1,24 @@
+{% extends 'tournoi/base.html' %}
+
+{% block title %}{% if equipe %}Modifier {{ equipe.nom_equipe }}{% else %}Inscrire une équipe{% endif %}{% endblock %}
+
+{% block content %}
+<section class="panel form-panel">
+    {% if equipe %}
+        <h1>Modifier l'équipe « {{ equipe.nom_equipe }} »</h1>
+    {% else %}
+        <h1>Inscrire une équipe</h1>
+    {% endif %}
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {% include 'tournoi/_form_fields.html' %}
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                {% if equipe %}Enregistrer les modifications{% else %}Valider l'inscription{% endif %}
+            </button>
+            <a class="btn" href="{% url 'tournoi:liste_equipes' %}">Annuler</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

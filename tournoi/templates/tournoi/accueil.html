@@ -1,0 +1,29 @@
+{% extends 'tournoi/base.html' %}
+
+{% block title %}Jeux du tournoi{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Tournoi eSport du campus</h1>
+    <p>Choisissez votre jeu, formez votre équipe et inscrivez-vous !</p>
+</section>
+
+<h2>Jeux ouverts au tournoi <span class="count">{{ jeux|length }}</span></h2>
+
+<div class="grid">
+    {% for jeu in jeux %}
+        <article class="card">
+            <span class="badge badge-{{ jeu.plateforme|lower }}">{{ jeu.get_plateforme_display }}</span>
+            <h3>{{ jeu.nom }}</h3>
+            <ul class="specs">
+                <li><strong>{{ jeu.nombre_joueurs_equipe }}</strong> joueur{{ jeu.nombre_joueurs_equipe|pluralize }} par équipe</li>
+                <li><strong>{{ jeu.nb_equipes }}</strong> équipe{{ jeu.nb_equipes|pluralize }} inscrite{{ jeu.nb_equipes|pluralize }}</li>
+            </ul>
+            <a class="btn" href="{% url 'tournoi:jeu_detail' jeu.pk %}">Voir le détail</a>
+        </article>
+    {% empty %}
+        <p class="empty">Aucun jeu n'est ouvert pour le moment.
+            <a href="{% url 'tournoi:jeu_ajouter' %}">Ajouter un jeu</a></p>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'tournoi/base.html' %}
+
+{% block title %}{{ jeu.nom }}{% endblock %}
+
+{% block content %}
+<a class="back" href="{% url 'tournoi:accueil' %}">← Retour aux jeux</a>
+
+<section class="panel">
+    <div class="panel-head">
+        <h1>{{ jeu.nom }}</h1>
+        {% if jeu.actif %}
+            <span class="status status-on">Inscriptions ouvertes</span>
+        {% else %}
+            <span class="status status-off">Inscriptions fermées</span>
+        {% endif %}
+    </div>
+    <dl class="infos">
+        <dt>Plateforme</dt><dd>{{ jeu.get_plateforme_display }}</dd>
+        <dt>Joueurs par équipe</dt><dd>{{ jeu.nombre_joueurs_equipe }}</dd>
+        <dt>Équipes inscrites</dt><dd>{{ equipes|length }}</dd>
+    </dl>
+    {% if jeu.actif %}
+        <a class="btn btn-primary" href="{% url 'tournoi:equipe_ajouter' %}?jeu={{ jeu.pk }}">Inscrire une équipe à ce jeu</a>
+    {% endif %}
+</section>
+
+<h2>Équipes inscrites</h2>
+{% if equipes %}
+    <table class="table">
+        <thead>
+            <tr><th>Équipe</th><th>Capitaine</th><th>Contact</th><th>Inscrite le</th><th></th></tr>
+        </thead>
+        <tbody>
+            {% for equipe in equipes %}
+                <tr>
+                    <td><strong>{{ equipe.nom_equipe }}</strong></td>
+                    <td>{{ equipe.capitaine }}</td>
+                    <td><a href="mailto:{{ equipe.email_contact }}">{{ equipe.email_contact }}</a></td>
+                    <td>{{ equipe.date_inscription|date:"d/m/Y H:i" }}</td>
+                    <td class="actions">
+                        <a class="btn btn-sm" href="{% url 'tournoi:equipe_modifier' equipe.pk %}">Modifier</a>
+                        <a class="btn btn-sm btn-danger" href="{% url 'tournoi:equipe_supprimer' equipe.pk %}">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p class="empty">Aucune équipe n'est encore inscrite à ce jeu.</p>
+{% endif %}
+{% endblock %}

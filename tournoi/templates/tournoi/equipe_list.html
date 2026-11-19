@@ -1,0 +1,40 @@
+{% extends 'tournoi/base.html' %}
+
+{% block title %}Équipes inscrites{% endblock %}
+
+{% block content %}
+<div class="page-head">
+    <h1>Équipes inscrites <span class="count">{{ equipes|length }}</span></h1>
+    <a class="btn btn-primary" href="{% url 'tournoi:equipe_ajouter' %}">+ Inscrire une équipe</a>
+</div>
+
+{% if equipes %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th><th>Équipe</th><th>Capitaine</th><th>Contact</th>
+                <th>Jeu</th><th>Plateforme</th><th>Inscrite le</th><th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for equipe in equipes %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td><strong>{{ equipe.nom_equipe }}</strong></td>
+                    <td>{{ equipe.capitaine }}</td>
+                    <td><a href="mailto:{{ equipe.email_contact }}">{{ equipe.email_contact }}</a></td>
+                    <td><a href="{% url 'tournoi:jeu_detail' equipe.jeu.pk %}">{{ equipe.jeu.nom }}</a></td>
+                    <td><span class="badge badge-{{ equipe.jeu.plateforme|lower }}">{{ equipe.jeu.get_plateforme_display }}</span></td>
+                    <td>{{ equipe.date_inscription|date:"d/m/Y H:i" }}</td>
+                    <td class="actions">
+                        <a class="btn btn-sm" href="{% url 'tournoi:equipe_modifier' equipe.pk %}">Modifier</a>
+                        <a class="btn btn-sm btn-danger" href="{% url 'tournoi:equipe_supprimer' equipe.pk %}">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p class="empty">Aucune équipe inscrite pour le moment.</p>
+{% endif %}
+{% endblock %}

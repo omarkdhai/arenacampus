@@ -1,0 +1,20 @@
+{% extends 'tournoi/base.html' %}
+
+{% block title %}Désistement de {{ equipe.nom_equipe }}{% endblock %}
+
+{% block content %}
+<section class="panel form-panel danger-zone">
+    <h1>Confirmer le désistement</h1>
+    <p>Voulez-vous vraiment retirer l'équipe <strong>« {{ equipe.nom_equipe }} »</strong>
+       (capitaine : {{ equipe.capitaine }}) du tournoi <strong>{{ equipe.jeu.nom }}</strong> ?</p>
+    <p class="warning">Cette action est définitive.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-actions">
+            <button type="submit" class="btn btn-danger">Oui, supprimer l'équipe</button>
+            <a class="btn" href="{% url 'tournoi:liste_equipes' %}">Annuler</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

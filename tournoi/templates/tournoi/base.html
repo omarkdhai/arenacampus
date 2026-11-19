@@ -1,0 +1,39 @@
+{% load static %}<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Accueil{% endblock %} · ArenaCampus</title>
+    <link rel="stylesheet" href="{% static 'tournoi/style.css' %}">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-inner">
+            <a class="logo" href="{% url 'tournoi:accueil' %}">Arena<span>Campus</span></a>
+            <nav>
+                <a href="{% url 'tournoi:accueil' %}">Jeux</a>
+                <a href="{% url 'tournoi:liste_equipes' %}">Équipes</a>
+                <a href="{% url 'tournoi:jeu_ajouter' %}">Ajouter un jeu</a>
+                <a class="btn btn-primary" href="{% url 'tournoi:equipe_ajouter' %}">Inscrire une équipe</a>
+                <a href="{% url 'admin:index' %}">Admin</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="message {{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container">ArenaCampus — Tournoi eSport inter-filières · RSI21</div>
+    </footer>
+</body>
+</html>

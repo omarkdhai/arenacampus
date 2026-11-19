@@ -1,0 +1,16 @@
+[
+  {"model": "tournoi.jeu", "pk": 1, "fields": {"nom": "League of Legends", "plateforme": "PC", "nombre_joueurs_equipe": 5, "actif": true}},
+  {"model": "tournoi.jeu", "pk": 2, "fields": {"nom": "Valorant", "plateforme": "PC", "nombre_joueurs_equipe": 5, "actif": true}},
+  {"model": "tournoi.jeu", "pk": 3, "fields": {"nom": "FIFA", "plateforme": "Console", "nombre_joueurs_equipe": 1, "actif": true}},
+  {"model": "tournoi.jeu", "pk": 4, "fields": {"nom": "Rocket League", "plateforme": "Console", "nombre_joueurs_equipe": 3, "actif": true}},
+  {"model": "tournoi.jeu", "pk": 5, "fields": {"nom": "PUBG Mobile", "plateforme": "Mobile", "nombre_joueurs_equipe": 4, "actif": true}},
+  {"model": "tournoi.jeu", "pk": 6, "fields": {"nom": "Counter-Strike 2", "plateforme": "PC", "nombre_joueurs_equipe": 5, "actif": false}},
+
+  {"model": "tournoi.equipe", "pk": 1, "fields": {"nom_equipe": "Les Dragons RSI", "capitaine": "Ben Ali Sami", "email_contact": "sami.benali@exemple.com", "jeu": 1, "date_inscription": "2026-11-10T09:15:00Z"}},
+  {"model": "tournoi.equipe", "pk": 2, "fields": {"nom_equipe": "Net Ninjas", "capitaine": "Trabelsi Amine", "email_contact": "amine.trabelsi@exemple.com", "jeu": 1, "date_inscription": "2026-11-11T14:30:00Z"}},
+  {"model": "tournoi.equipe", "pk": 3, "fields": {"nom_equipe": "Phoenix Squad", "capitaine": "Gharbi Yasmine", "email_contact": "yasmine.gharbi@exemple.com", "jeu": 2, "date_inscription": "2026-11-12T10:00:00Z"}},
+  {"model": "tournoi.equipe", "pk": 4, "fields": {"nom_equipe": "Packet Loss", "capitaine": "Hammami Youssef", "email_contact": "youssef.hammami@exemple.com", "jeu": 2, "date_inscription": "2026-11-13T16:45:00Z"}},
+  {"model": "tournoi.equipe", "pk": 5, "fields": {"nom_equipe": "Golden Boot", "capitaine": "Jlassi Mehdi", "email_contact": "mehdi.jlassi@exemple.com", "jeu": 3, "date_inscription": "2026-11-14T11:20:00Z"}},
+  {"model": "tournoi.equipe", "pk": 6, "fields": {"nom_equipe": "Turbo Boost", "capitaine": "Mansouri Ines", "email_contact": "ines.mansouri@exemple.com", "jeu": 4, "date_inscription": "2026-11-15T13:05:00Z"}},
+  {"model": "tournoi.equipe", "pk": 7, "fields": {"nom_equipe": "Drop Zone", "capitaine": "Khelifi Rania", "email_contact": "rania.khelifi@exemple.com", "jeu": 5, "date_inscription": "2026-11-16T17:40:00Z"}}
+]
